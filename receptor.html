@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Datos Recibidos</title>
+</head>
+<body>
+  <h2>Información Recibida</h2>
+  <div id="resultado"></div>
+
+  <script>
+    const mostrar = (key) => `<strong>${key}:</strong> ${localStorage.getItem(key)}<br>`;
+    const container = document.getElementById("resultado");
+
+    container.innerHTML = `
+      ${mostrar("nombres")}
+      ${mostrar("cedula")}
+      ${mostrar("fecha")}
+      ${mostrar("ciudad")}
+      ${mostrar("correo")}
+      ${mostrar("telefono")}
+      ${mostrar("direccion")}
+      ${mostrar("estado")}
+      ${mostrar("etnia")}
+      ${mostrar("genero")}
+      <strong>Hábitos:</strong><br>
+      ${JSON.parse(localStorage.getItem("habitos")).map(h => "- " + h).join("<br>")}
+    `;
+  </script>
+</body>
+</html>

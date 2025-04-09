@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario</title>
+</head>
+<body>
+  <h2>Formulario de Registro</h2>
+  <form onsubmit="guardarDatos()" action="receptor.html">
+    <label>Nombres:</label><br>
+    <input type="text" name="nombres" id="nombres" required><br><br>
+
+    <label>Cédula:</label><br>
+    <input type="text" id="cedula" required><br><br>
+
+    <label>Fecha de nacimiento:</label><br>
+    <input type="date" id="fecha" required><br><br>
+
+    <label>Ciudad:</label><br>
+    <input type="text" id="ciudad" required><br><br>
+
+    <label>Correo:</label><br>
+    <input type="email" id="correo" required><br><br>
+
+    <label>Teléfono:</label><br>
+    <input type="tel" id="telefono" required><br><br>
+
+    <label>Dirección:</label><br>
+    <textarea id="direccion" required></textarea><br><br>
+
+    <label>Estado civil:</label><br>
+    <select id="estado">
+      <option value="Soltero">Soltero</option>
+      <option value="Casado">Casado</option>
+      <option value="Divorciado">Divorciado</option>
+    </select><br><br>
+
+    <label>Etnia:</label><br>
+    <select id="etnia">
+      <option value="Mestizo">Mestizo</option>
+      <option value="Indígena">Indígena</option>
+      <option value="Afroecuatoriano">Afroecuatoriano</option>
+    </select><br><br>
+
+    <label>Género:</label><br>
+    <input type="radio" name="genero" value="Masculino" required> Masculino
+    <input type="radio" name="genero" value="Femenino"> Femenino
+    <input type="radio" name="genero" value="Otro"> Otro<br><br>
+
+    <label>¿Consume?:</label><br>
+    <input type="checkbox" value="Fuma" class="habitos"> Fuma
+    <input type="checkbox" value="Alcohol" class="habitos"> Toma alcohol
+    <input type="checkbox" value="Drogas" class="habitos"> Consume drogas<br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    function guardarDatos() {
+      event.preventDefault();
+      localStorage.setItem("nombres", document.getElementById("nombres").value);
+      localStorage.setItem("cedula", document.getElementById("cedula").value);
+      localStorage.setItem("fecha", document.getElementById("fecha").value);
+      localStorage.setItem("ciudad", document.getElementById("ciudad").value);
+      localStorage.setItem("correo", document.getElementById("correo").value);
+      localStorage.setItem("telefono", document.getElementById("telefono").value);
+      localStorage.setItem("direccion", document.getElementById("direccion").value);
+      localStorage.setItem("estado", document.getElementById("estado").value);
+      localStorage.setItem("etnia", document.getElementById("etnia").value);
+
+      const genero = document.querySelector('input[name="genero"]:checked');
+      localStorage.setItem("genero", genero ? genero.value : "");
+
+      const habitos = Array.from(document.querySelectorAll(".habitos:checked")).map(cb => cb.value);
+      localStorage.setItem("habitos", JSON.stringify(habitos));
+
+      window.location.href = "receptor.html";
+    }
+  </script>
+</body>
+</html>
